@@ -1,14 +1,17 @@
-.col-25 {
+.label{
   float: left;
-  width: auto;
+  width: 10em;
   margin-top: 6px;
+  /* border: solid black 1px; */
   
 }
 
-.col-75 {
+.detail {
   float: left;
-  width: auto   ;
+  width: 10em;
+  height: 44px;
   margin-top: 6px;
+  /* border: solid black 1px; */
 }
 
 .row:after {
