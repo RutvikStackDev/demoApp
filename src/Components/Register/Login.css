@@ -45,6 +45,7 @@ input[type="submit"]:hover {
   margin: auto;
   display: flex;
   flex-wrap: nowrap;
+  margin-top: 1em;
 }
 
 .col-45 {
