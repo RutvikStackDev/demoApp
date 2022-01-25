@@ -5,7 +5,7 @@
   width: 50em;
   box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
   margin: auto;
-  display: flex;
+  display: block;
   flex-wrap: nowrap;
   margin-top: 1em;
 }
@@ -30,8 +30,9 @@
   /* border: solid black 1px; */
 }
 
-.row:after {
+.row {
   content: "";
+  margin: 10px;
   display: table;
   clear: both;
 }

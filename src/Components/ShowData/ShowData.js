@@ -1,49 +1,41 @@
 import "./ShowData.css";
-// import Login from "../Register/Login";
 
 function ShowData(props) {
-
-  // function saveFormDataHandler(enteredExpenseData) {
-  //   const formData = {
-  //     ...enteredExpenseData
-  //   };}
+  // console.log("props ", props.allData);
   return (
     <div>
       <div className="data-container">
-        <div className="row">
-          <div className="tag">
-            <label name="fanme" className="label">
-              Firstname
-            </label>
+          <div
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="mail">Email Address</label>
+            <label htmlFor="number">Contact Number</label>
           </div>
-          <div className="detail">{props.fname}</div>
-        </div>
-        <div className="row">
-          <div className="tag">
-            <label name="lname" className="label">
-              Last Name
-            </label>
-          </div>
-          <div className="detail">{props.lname}</div>
-        </div>
-        <div className="row">
-          <div className="tag">
-            <label name="email" className="label">
-              Email Address
-            </label>
-          </div>
-          <div className="detail">{props.mail}</div>
-        </div>
-        <div className="row">
-          <div className="tag">
-            <label name="cNumber" className="label">
-              Contact Number
-            </label>
-          </div>
-          <div className="detail">{props.conNumber}</div>
-        </div>
+
+        {props?.allData?.map((user) => (
+          <>
+            {user?.map((data) => (
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                {/* <label htmlFor="firstName">firstName</label> */}
+                <div className="row">
+                  <div className="detail">{data.firstName || ""}</div>
+                </div>
+                <div className="row">
+                  <div className="detail">{data.lastName || ""}</div>
+                </div>
+                <div className="row">
+                  <div className="detail">{data.email || ""}</div>
+                </div>
+                <div className="row">
+                  <div className="detail">{data.contactNumber || ""}</div>
+                </div>
+              </div>
+            ))}
+          </>
+        ))}
       </div>
-      {/* <Login onSaveFormeData={saveFormDataHandler} /> */}
     </div>
   );
 }

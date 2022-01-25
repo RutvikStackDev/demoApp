@@ -1,52 +1,42 @@
 import { useState } from "react";
 import ShowData from "../ShowData/ShowData";
-import "./Login.css";
+import "./Register.css";
 
-function Login(props) {
-  const [firstName, setFirstName] = useState([]);
-  const [lastName, setLastName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [contactNumber, setContactNumber] = useState([]);
+// const AllData = []
 
-  
+function Register(props) {
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactNumber: "",
+  });
+  const [allData, setAllData] = useState([]);
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
-  function fistNameChangeHandler(event) {
-    setFirstName(event.target.value);
-    // formData = { ...formData, fname: firstName };
-  }
-
-  function lastNameChangeHandler(event) {
-    setLastName(event.target.value);
-    // formData = { ...formData, lname: lastName };
-  }
-
-  function emailChangeHandler(event) {
-    setEmail(event.target.value);
-    // formData = { ...formData, mail: email };
-  }
-
-  function contactChangeHandler(event) {
-    setContactNumber(event.target.value);
-    // formData = { ...formData, cNumber: contactNumber };
-  }
-  function submitHandler(event) {
+  const submitHandler = (event) => {
     event.preventDefault();
-    const formData = [
+    const userData = [
       {
-        fname: firstName,
-        lname: lastName,
-        mail: email,
-        cNumber: contactNumber,
+        firstName: state.firstName,
+        lastName: state.lastName,
+        email: state.email,
+        contactNumber: state.contactNumber,
       },
     ];
-    // props.onSaveExpenseData(formData);
-    // console.log(firstName);
-    // console.log(lastName);
-    // console.log(email);
-    // console.log(contactNumber);
-    // console.log("");
-    console.log(formData);
-  }
+
+    // console.log(userData);   
+    setAllData([...allData, userData]);
+    setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      contactNumber: "",
+    });
+    // AllData.push(userData) ;
+  };
 
   return (
     <div>
@@ -60,9 +50,10 @@ function Login(props) {
               <input
                 type="text"
                 id="fname"
-                name="firstname"
+                name="firstName"
+                value={state.firstName}
                 placeholder="Your name.."
-                onChange={fistNameChangeHandler}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -74,9 +65,10 @@ function Login(props) {
               <input
                 type="text"
                 id="lname"
-                name="lastname"
+                name="lastName"
+                value={state.lastName}
                 placeholder="Your last name.."
-                onChange={lastNameChangeHandler}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -88,9 +80,10 @@ function Login(props) {
               <input
                 type="mail"
                 id="email"
-                name="mail"
+                value={state.email}
+                name="email"
                 placeholder="Your email addresss.."
-                onChange={emailChangeHandler}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -102,25 +95,22 @@ function Login(props) {
               <input
                 type="number"
                 id="contact"
-                name="cnumber"
+                name="contactNumber"
+                value={state.contactNumber}
                 placeholder="Your contact number.."
-                onChange={contactChangeHandler}
+                onChange={handleChange}
               />
             </div>
           </div>
           <div className="row">
-            <input type="submit" value="Submit" />
+            <button onClick={submitHandler}>Submit</button>
           </div>
         </form>
       </div>
-      <ShowData
-        fname={firstName}
-        lname={lastName}
-        mail={email}
-        conNumber={contactNumber}
-      />
+      {/* {console.log(allData)} */}
+      <ShowData allData={allData} />
     </div>
   );
 }
 
-export default Login;
+export default Register;
