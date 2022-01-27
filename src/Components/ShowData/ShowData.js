@@ -1,41 +1,42 @@
 import "./ShowData.css";
 
 function ShowData(props) {
-  // console.log("props ", props.allData);
   return (
-    <div>
-      <div className="data-container">
-          <div
-            style={{ display: "flex", flexDirection: "row" }}
-          >
-            <label htmlFor="firstName">First Name</label>
-            <label htmlFor="lastName">Last Name</label>
-            <label htmlFor="mail">Email Address</label>
-            <label htmlFor="number">Contact Number</label>
-          </div>
-
-        {props?.allData?.map((user) => (
-          <>
-            {user?.map((data) => (
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                {/* <label htmlFor="firstName">firstName</label> */}
-                <div className="row">
-                  <div className="detail">{data.firstName || ""}</div>
-                </div>
-                <div className="row">
-                  <div className="detail">{data.lastName || ""}</div>
-                </div>
-                <div className="row">
-                  <div className="detail">{data.email || ""}</div>
-                </div>
-                <div className="row">
-                  <div className="detail">{data.contactNumber || ""}</div>
-                </div>
-              </div>
-            ))}
-          </>
-        ))}
-      </div>
+    <div className="data-container">
+      <table>
+        <thead className="row heading">
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Lastr Name</th>
+            <th>Email Address</th>
+            <th>Contact Number</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody className="detail">
+          {props?.allData?.map((user, id) => (
+            <>
+              {user?.map((data) => (
+                <tr key={id}>
+                  <td>{id}</td>
+                  <td>{data.firstName}</td>
+                  <td>{data.lastName}</td>
+                  <td>{data.email}</td>
+                  <td>{data.contact}</td>
+                  <td>{data.product}</td>
+                  <td>{data.quantity}</td>
+                  <td>
+                    <button onClick={()=> props.onDelete(id)} id={id}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+              {/* {console.log(index)} */}
+            </>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

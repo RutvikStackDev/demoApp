@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #adadad;
+}
+
 input[type="text"],
 input[type="mail"],
 input[type="number"],
@@ -12,6 +16,7 @@ select {
   border-radius: 4px;
   resize: vertical;
   box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
+  background-color: #adadad;
 }
 
 label {
@@ -20,49 +25,93 @@ label {
   /* width: auto; */
 }
 
-input[type="submit"] {
-  background-color: #04aa6d;
+.submit-btn,
+.clr-btn {
+  background-color: #adadad;
+  padding: 10px;
+  border: solid #4b4b4b 1px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
+  transition: all 200ms ease;
+  font-weight: bold;
+  color: #2c2c2c;
+  margin-left: 1em;
+}
+.submit-btn:hover,
+.clr-btn:hover {
+  background-color: #000000;
   color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  /* float: right; */
-  margin-top: 10px;
+  border-color: black;
 }
 
-input[type="submit"]:hover {
-  background-color: #45a049;
+.submit-btn:disabled {
+  background-color: rgb(247, 43, 43);
+  color: black;
+  border-color: rgb(247, 43, 43);
+  /* display: none; */
+}
+
+.add-btn,
+.minus-btn {
+  background-color: green;
+  width: 3em;
+  height: 3em;
+  border: solid #adadad 1px;
+  border-radius: 5px;
   box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
+  transition: all 200ms ease;
+  font-weight: bold;
+  color: #2c2c2c;
+  margin: 9px;
+  border-color: green;
+}
+.add-btn:hover {
+  background-color: #000000;
+  color: green;
+  border-color: green ;
+}
+.minus-btn:hover {
+  background-color: #000000;
+  color: red;
+  border-color: red;
+}
+
+.add-btn:disabled,
+.minus-btn:disabled {
+  background-color: rgb(247, 43, 43);
+  color: black;
+  border-color: rgb(247, 43, 43);
 }
 
 .container {
-  border-radius: 5px;
-  background-color: #a8a8a8;
+  border-radius: 15px;
+  background-color: #4b4b4b;
   padding: 20px;
-  width: 30em;
+  width: 35em;
   box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
   margin: auto;
   display: flex;
   flex-wrap: nowrap;
   margin-top: 1em;
+  color: white;
 }
 
 .col-45 {
   float: left;
   width: 10em;
   margin-top: 6px;
-  
 }
 
 .col-55 {
   float: left;
   width: auto;
   margin-top: 6px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 /* Clear floats after the columns */
-.row:after {
+.row-main:after {
   content: "";
   display: table;
   clear: both;
