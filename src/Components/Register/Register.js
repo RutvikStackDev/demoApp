@@ -8,7 +8,7 @@ function Register() {
   const [state, setState] = useState({
     data: [
       {
-        id: "",
+        id: " ",
         firstName: "",
         lastName: "",
         email: "",
@@ -19,19 +19,16 @@ function Register() {
   });
 
   const [allData, setAllData] = useState([]);
-  // const [addedQunatity, setAddedQuantity] = useState("");
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const addQuantity = (e) => {
     setCount(count + 1);
-    // console.log(count);
   };
 
   const removeQunatity = (e) => {
     setCount(count - 1);
-    // console.log(count);
   };
 
   const clearTextField = () => {
@@ -47,9 +44,10 @@ function Register() {
 
   const removeData = (id) => {
     console.log("Data removed at ID :", id);
-    // const newState = state.data?.filter((userID) => id !== userID);
+    // const newState = state.data?.filter((userID) => id !== userID.id);
+    const newState = state.data?.filter((userID) => {return console.log(userID.id);});
     // setState({data:state.data.filter(user => user.id !== id)})
-    // console.log("newState", newState);
+    console.log("newState", newState);
   };
 
   // console.log(addedQunatity);
@@ -67,7 +65,6 @@ function Register() {
       },
     ];
 
-    // console.log(userData);
     setAllData([...allData, userData]);
     setState({
       firstName: "",
@@ -78,7 +75,6 @@ function Register() {
       quantity: 0,
     });
     setCount(0);
-    // AllData.push(userData) ;
   };
 
   return (
