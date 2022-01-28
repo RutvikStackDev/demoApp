@@ -6,13 +6,39 @@ body {
   background-color: #adadad;
 }
 
+h1 {
+  text-align: center;
+  text-shadow: 1px 1px 20px rgb(0, 0, 0, 0.75);
+}
+
+h1:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* display: inline-block; */
+  height: 1em;
+  width: 100%;
+  border-bottom: 1px solid;
+  margin-top: 10px;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+  transition: opacity 0.5s, transform 0.5s;
+  -webkit-transform: scale(0, 1);
+  transform: scale(0, 1);
+}
+
+h1:hover:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
 input[type="text"],
 input[type="mail"],
 input[type="number"],
 select {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   resize: vertical;
   box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
@@ -68,7 +94,7 @@ label {
 .add-btn:hover {
   background-color: #000000;
   color: green;
-  border-color: green ;
+  border-color: green;
 }
 .minus-btn:hover {
   background-color: #000000;

@@ -3,12 +3,12 @@ import ShowData from "../ShowData/ShowData";
 import "./Register.css";
 import TextField from "@material-ui/core/TextField";
 
-function Register() {
+function Register(props) {
   let [count, setCount] = useState(0);
   const [state, setState] = useState({
     data: [
       {
-        id: " ",
+        index: 0,
         firstName: "",
         lastName: "",
         email: "",
@@ -42,20 +42,12 @@ function Register() {
     setCount(0);
   };
 
-  const removeData = (id) => {
-    console.log("Data removed at ID :", id);
-    // const newState = state.data?.filter((userID) => id !== userID.id);
-    const newState = state.data?.filter((userID) => {return console.log(userID.id);});
-    // setState({data:state.data.filter(user => user.id !== id)})
-    console.log("newState", newState);
-  };
-
-  // console.log(addedQunatity);
-
   const submitHandler = (event) => {
     event.preventDefault();
-    const userData = [
+    let num = Math.floor(Math.random() * 100) + 1;
+    var userData = [
       {
+        index: num,
         firstName: state.firstName,
         lastName: state.lastName,
         email: state.email,
@@ -72,13 +64,32 @@ function Register() {
       email: "",
       contact: "",
       product: "",
-      quantity: 0,
     });
     setCount(0);
   };
 
+  // const removeData = (id) => {
+  //   // console.log("Data removed at ID :", id);
+  //   console.log("Index of removed data :", id);
+  //   // const newState = state.data?.filter((userID) => id !== userID.index);
+  //   // const newState = state.data?.filter((userID) => {return console.log(userID.id)});
+  //   // setState({data:state.data.filter(user => user.id !== id)})
+  //   // console.log("newState", newState);
+
+  //   setState((state) => {
+  //     const { newData } = state;
+  //     const filteredData = newData.filter((data) => data.index !== id);
+  //     return { data: filteredData };
+  //   });
+  // };
+
+  // const editData = (id) => {
+  //   console.log("Editing ID :", id);
+  // };
+
   return (
     <div>
+      <h1>Order Details</h1>
       <div className="container">
         <form onSubmit={submitHandler}>
           <div className="row-main">
@@ -91,7 +102,7 @@ function Register() {
                 type="text"
                 // id="fname"
                 name="firstName"
-                value={state.firstName}
+                value={state.firstName || ""}
                 placeholder="Your name.."
                 onChange={handleChange}
               />
@@ -107,7 +118,7 @@ function Register() {
                 type="text"
                 // id="lname"
                 name="lastName"
-                value={state.lastName}
+                value={state.lastName || ""}
                 placeholder="Your last name.."
                 onChange={handleChange}
               />
@@ -122,7 +133,7 @@ function Register() {
                 id="standard-basic"
                 type="text"
                 // id="email"
-                value={state.email}
+                value={state.email || ""}
                 name="email"
                 placeholder="Your email addresss.."
                 onChange={handleChange}
@@ -138,7 +149,7 @@ function Register() {
                 id="standard-basic"
                 type="number"
                 // id="email"
-                value={state.contact}
+                value={state.contact || ""}
                 name="contact"
                 placeholder="Your contact number.."
                 onChange={handleChange}
@@ -155,7 +166,7 @@ function Register() {
                 type="text"
                 // id="contact"
                 name="product"
-                value={state.product}
+                value={state.product || ""}
                 placeholder="Puchased product.."
                 onChange={handleChange}
               />
@@ -214,8 +225,7 @@ function Register() {
           </div>
         </form>
       </div>
-      {/* {console.log(allData)} */}
-      <ShowData allData={allData} onDelete={removeData} />
+      <ShowData allData={allData} /> {/* onEdit={editData} */}
     </div>
   );
 }
