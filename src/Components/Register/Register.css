@@ -33,6 +33,19 @@ h1:hover:after {
   transform: scale(1);
 }
 
+.card {
+  border-radius: 15px;
+  background-color: #4b4b4b;
+  padding: 20px;
+  width: 35em;
+  box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-top: 1em;
+  color: white;
+}
+
 input[type="text"],
 input[type="mail"],
 input[type="number"],
@@ -109,19 +122,6 @@ label {
   border-color: rgb(247, 43, 43);
 }
 
-.container {
-  border-radius: 15px;
-  background-color: #4b4b4b;
-  padding: 20px;
-  width: 35em;
-  box-shadow: 1px 1px 20px rgb(0, 0, 0, 0.5);
-  margin: auto;
-  display: flex;
-  flex-wrap: nowrap;
-  margin-top: 1em;
-  color: white;
-}
-
 .col-45 {
   float: left;
   width: 10em;
@@ -137,7 +137,7 @@ label {
 }
 
 /* Clear floats after the columns */
-.row-main:after {
+.row:after {
   content: "";
   display: table;
   clear: both;

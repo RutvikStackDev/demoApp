@@ -27,12 +27,12 @@
   text-align: center;
   /* border: solid black 1px; */
 }
-
-.row {
+/* 
+.data-row {
   padding: 80px;
-  /* background-color: #555353; */
+  background-color: #555353;
   border-radius: 5px;
-}
+} */
 
 table {
   /* border: solid 1px black; */

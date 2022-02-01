@@ -2,6 +2,7 @@ import { useState } from "react";
 import ShowData from "../ShowData/ShowData";
 import "./Register.css";
 import TextField from "@material-ui/core/TextField";
+import Wrapper from "../Wrapper/Wrapper";
 
 function Register(props) {
   let [count, setCount] = useState(0);
@@ -45,19 +46,40 @@ function Register(props) {
   const submitHandler = (event) => {
     event.preventDefault();
     let num = Math.floor(Math.random() * 100) + 1;
-    var userData = [
-      {
-        index: num,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        email: state.email,
-        contact: state.contact,
-        product: state.product,
-        quantity: count,
-      },
-    ];
+    var userData = {
+      index: num,
+      firstName: state.firstName,
+      lastName: state.lastName,
+      email: state.email,
+      contact: state.contact,
+      product: state.product,
+      quantity: count,
+    };
+
+    console.log(userData);
 
     setAllData([...allData, userData]);
+    const requestOption = {
+      // mode: "no-cors",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fname: userData.firstName,
+        lname: userData.lastName,
+        email: userData.email,
+        contact: userData.contact,
+        product: userData.product,
+        quantity: userData.quantity,
+      }),
+    };
+    const postURL = "http://localhost:3100/api/adduser";
+    fetch(postURL, requestOption).then((res) => {
+      console.log(res);
+      //alert("Data has been added to database!");
+    });
+
     setState({
       firstName: "",
       lastName: "",
@@ -68,31 +90,12 @@ function Register(props) {
     setCount(0);
   };
 
-  // const removeData = (id) => {
-  //   // console.log("Data removed at ID :", id);
-  //   console.log("Index of removed data :", id);
-  //   // const newState = state.data?.filter((userID) => id !== userID.index);
-  //   // const newState = state.data?.filter((userID) => {return console.log(userID.id)});
-  //   // setState({data:state.data.filter(user => user.id !== id)})
-  //   // console.log("newState", newState);
-
-  //   setState((state) => {
-  //     const { newData } = state;
-  //     const filteredData = newData.filter((data) => data.index !== id);
-  //     return { data: filteredData };
-  //   });
-  // };
-
-  // const editData = (id) => {
-  //   console.log("Editing ID :", id);
-  // };
-
   return (
-    <div>
+    <Wrapper>
       <h1>Order Details</h1>
-      <div className="container">
+      <div className="card">
         <form onSubmit={submitHandler}>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="fname">First Name</label>
             </div>
@@ -108,7 +111,7 @@ function Register(props) {
               />
             </div>
           </div>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="lname">Last Name</label>
             </div>
@@ -124,7 +127,7 @@ function Register(props) {
               />
             </div>
           </div>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="email">Email Address</label>
             </div>
@@ -140,7 +143,7 @@ function Register(props) {
               />
             </div>
           </div>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="email">Contact Number</label>
             </div>
@@ -156,7 +159,7 @@ function Register(props) {
               />
             </div>
           </div>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="pname">Product Name</label>
             </div>
@@ -172,7 +175,7 @@ function Register(props) {
               />
             </div>
           </div>
-          <div className="row-main">
+          <div className="row">
             <div className="col-45">
               <label name="qty">Quantity</label>
             </div>
@@ -204,17 +207,17 @@ function Register(props) {
               -
             </button>
           </div>
-          <div className="row-main">
+          <div className="row">
             <button
               className="submit-btn"
               onClick={submitHandler}
               disabled={
-                count === 0
-                // state.firstName === "" ||
-                // state.lastName === "" ||
-                // state.email === "" ||
-                // state.contact === "" ||
-                // state.product === ""
+                count === 0 ||
+                state.firstName === "" ||
+                state.lastName === "" ||
+                state.email === "" ||
+                state.contact === "" ||
+                state.product === ""
               }
             >
               Submit
@@ -226,7 +229,7 @@ function Register(props) {
         </form>
       </div>
       <ShowData allData={allData} /> {/* onEdit={editData} */}
-    </div>
+    </Wrapper>
   );
 }
 

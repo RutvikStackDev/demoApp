@@ -3,7 +3,7 @@ import "./ShowData.css";
 function ShowData(props) {
   return (
     <div className="data-container">
-      <table>
+      {/* <table>
         <thead className="row-heading">
           <tr>
             <th>ID</th>
@@ -26,14 +26,11 @@ function ShowData(props) {
                 <td>{data.contact}</td>
                 <td>{data.product}</td>
                 <td>{data.quantity}</td>
-                {/* <td>
-                  <button onClick={() => props.onEdit(id)}>Edit</button>
-                </td> */}
               </tr>
             ));
           })}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }
