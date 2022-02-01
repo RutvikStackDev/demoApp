@@ -77,7 +77,7 @@ function Register(props) {
     const postURL = "http://localhost:3100/api/adduser";
     fetch(postURL, requestOption).then((res) => {
       console.log(res);
-      //alert("Data has been added to database!");
+      console.log("Data added to database");
     });
 
     setState({
