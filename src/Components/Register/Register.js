@@ -32,7 +32,7 @@ function Register(props) {
     setCount(count - 1);
   };
 
-  const clearTextField = () => {
+  const clearTextField = (e) => {
     setState({
       firstName: "",
       lastName: "",
@@ -56,11 +56,8 @@ function Register(props) {
       quantity: count,
     };
 
-    console.log(userData);
-
     setAllData([...allData, userData]);
     const requestOption = {
-      // mode: "no-cors",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,17 +74,9 @@ function Register(props) {
     const postURL = "http://localhost:3100/api/adduser";
     fetch(postURL, requestOption).then((res) => {
       console.log(res);
-      console.log("Data added to database");
     });
 
-    setState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      contact: "",
-      product: "",
-    });
-    setCount(0);
+    clearTextField();
   };
 
   return (
@@ -212,12 +201,12 @@ function Register(props) {
               className="submit-btn"
               onClick={submitHandler}
               disabled={
-                count === 0 ||
-                state.firstName === "" ||
-                state.lastName === "" ||
-                state.email === "" ||
-                state.contact === "" ||
-                state.product === ""
+                count === 0
+                // state.firstName === "" ||
+                // state.lastName === "" ||
+                // state.email === "" ||
+                // state.contact === "" ||
+                // state.product === ""
               }
             >
               Submit
@@ -228,7 +217,7 @@ function Register(props) {
           </div>
         </form>
       </div>
-      <ShowData allData={allData} /> {/* onEdit={editData} */}
+      <ShowData />
     </Wrapper>
   );
 }
