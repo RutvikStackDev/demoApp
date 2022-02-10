@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDashboardData } from "../../Store/user/action";
 import "./ShowData.css";
 
 function ShowData(props) {
-  const [state, setState] = useState([]);
+  // const [state, setState] = useState([]);
+
+  const dispatch = useDispatch();
 
   const deleteHandler = (e) => {
     const userID = e.target.id;
     console.log("ID : ", userID);
-
   };
 
+  const counter = useSelector((state) => state.userData.userData);
+  console.log("fsdffsdfsdfsf-----", counter);
+
   useEffect(() => {
-    async function getapi() {
-      const response = await fetch("http://localhost:3100/api/users");
-      var data = await response.json();
-      setState(data);
-      // console.log("length :", state.length);
-      // console.log("state :", state);
-    }
-    getapi();
-  }, []);
+    dispatch(getDashboardData());
+  }, [dispatch]);
 
   return (
     <div className="data-container">
@@ -36,8 +35,8 @@ function ShowData(props) {
           </tr>
         </thead>
         <tbody className="detail">
-          {state &&
-            state.map((user, id) => {
+          {counter &&
+            counter.map((user, id) => {
               return (
                 <tr key={id}>
                   <td>{id}</td>
